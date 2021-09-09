@@ -33,4 +33,6 @@ def home(request):
     return render(request,template_name='admission.html',context={'form':form,'stud':stud})
     
 
-    
+def delete_stud(request,id):
+    Admission.objects.get(id=id).delete()
+    return redirect('homepage')
