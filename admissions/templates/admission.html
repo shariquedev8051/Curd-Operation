@@ -10,6 +10,41 @@
         <button type="submit" class="btn btn-success">Register Yourself</button>
         </div>
         </form>
+        </div>
+    <div class="col-sm-8">
+        <h2 class="text-center alert alert-info" >Student's Details</h2>
+        {% if stud %}
+        <table class="table caption-top">
+            <thead>
+              <tr>
+                <th scope="col">Stud ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email ID</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Admission Date</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for s in stud %}
+              <tr>
+                <th scope="row">{{s.id}}</th>
+                <td>{{s.name}}</td>
+                <td>{{s.email}}</td>
+                <td>{{s.mobile}}</td>
+                <td>{{s.admission_date}}</td>
+                <td>
+                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+            <h3 class="text-center alert alert-success" >You would be first Student</h3>
+        {% endif %}
+
     </div>
 </div>
 

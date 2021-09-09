@@ -1,12 +1,16 @@
-from admissions.models import Admission
-from django import forms
-from django.shortcuts import redirect, render
-from .forms import Admission_form
-from django.views.decorators.csrf import ensure_csrf_cookie,csrf_exempt
 from datetime import date
+from django import forms
 from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from admissions.models import Admission
+from .forms import Admission_form
+
 # Create your views here.
 
+
+
+"""Belwo function written for add and show data"""
 @csrf_exempt
 def home(request):
     if request.method == 'POST':
@@ -25,6 +29,8 @@ def home(request):
             return HttpResponse("Invalid data entered")
     else:
         form=Admission_form()
-        return render(request,template_name='admission.html',context={'form':form})
+    stud= Admission.objects.all()
+    return render(request,template_name='admission.html',context={'form':form,'stud':stud})
     
+
     
