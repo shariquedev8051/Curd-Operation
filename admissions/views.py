@@ -32,7 +32,21 @@ def home(request):
     stud= Admission.objects.all()
     return render(request,template_name='admission.html',context={'form':form,'stud':stud})
     
-
+"""Below function is written for delete the data"""
 def delete_stud(request,id):
     Admission.objects.get(id=id).delete()
     return redirect('homepage')
+
+
+"""Below function is written for edit the data"""
+@csrf_exempt
+def edit_stud(request,id):
+    if request.method == 'POST':
+        stud_obj=Admission.objects.get(id=id)
+        stud_mod=Admission_form(request.POST,instance=stud_obj)
+        if stud_mod.is_valid():
+            stud_mod.save()
+    else:
+        stud_obj=Admission.objects.get(id=id)
+        stud_mod=Admission_form(instance=stud_obj)
+    return render(request,template_name='update.html',context={'stud':stud_mod})
