@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from .forms import Admission_form
 from django.views.decorators.csrf import ensure_csrf_cookie,csrf_exempt
 from datetime import date
+from django.http import HttpResponse
 # Create your views here.
 
 @csrf_exempt
@@ -21,9 +22,7 @@ def home(request):
             return redirect('homepage')
         else:
             print("Data is invalid")
-        # stud_obj=Admission(data)
-        # stud_obj.save()
-        # print(Admission.objects.all())
+            return HttpResponse("Invalid data entered")
     else:
         form=Admission_form()
         return render(request,template_name='admission.html',context={'form':form})
