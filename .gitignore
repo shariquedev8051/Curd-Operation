@@ -1,2 +1,4 @@
 */__pycache__/
 admissions/migrations/__pycache__/
+admissions/migrations/*
+media_cdn/
