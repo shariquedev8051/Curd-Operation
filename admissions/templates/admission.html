@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-sm-4">
         <h2 class="text-center alert alert-info" >Registration Form</h2>
-        <form action="{% url 'homepage' %}" method="POST" >
+        <form action="{% url 'homepage' %}" method="POST" enctype="multipart/form-data" >
             {% csrf_token %}
             {{form.as_p}}
         <div>

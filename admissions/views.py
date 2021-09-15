@@ -14,15 +14,19 @@ from .forms import Admission_form
 @csrf_exempt
 def home(request):
     if request.method == 'POST':
+        # print('Data is valid')
+
         data=Admission_form(request.POST)
+        # file = Admission_form(request.FILES)
         if data.is_valid():
             print('Data is valid')
             nm=data.cleaned_data['name']
             cs=data.cleaned_data['course']
             mail=data.cleaned_data['email']
             mob=data.cleaned_data['mobile']
+            file = data.cleaned_data['identification_photo']
             dt=date.today()
-            Admission.objects.create(name=nm,course=cs,email=mail,mobile=mob,admission_date=dt)
+            Admission.objects.create(name=nm,course=cs,email=mail,mobile=mob,admission_date=dt,identification_photo=file)
             return redirect('homepage')
         else:
             print("Data is invalid")
